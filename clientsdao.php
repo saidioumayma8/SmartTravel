@@ -59,22 +59,34 @@ class eclientsDAO {
 }
 public function update_entreprise($entreprise)
     {
-        $query = "UPDATE entreprise SET 
-                  idEn = :idEn, 
-                  img = :img,
-                  nameEn = :nameEn,
-                  WHERE idEn = :idEn";
+        $query = "UPDATE clients SET 
+                  adresse = :adersse, 
+                  email = :email,
+                  full_name = :full_name,
+                  password = :password,
+                  phone = :phone,
+                  username = :username,
+                  ville = :ville,
+                  WHERE full_name = :full_name";
 
         $stmt = $this->db->prepare($query);
 
-        $name = $entreprise->getidEn();
-        $name = $entreprise->getimg();
-        $name = $entreprise->getnameEn();
+        $name = $entreprise->getadresse();
+        $name = $entreprise->getemail();
+        $name = $entreprise->getfull_name();
+        $name = $entreprise->getpassword();
+        $name = $entreprise->getphone();
+        $name = $entreprise->getusername();
+        $name = $entreprise->getville();
        
 
-        $stmt->bindParam(':idEn', $idEn);
-        $stmt->bindParam(':img', $img);
-        $stmt->bindParam(':nameEn', $nameEn);
+        $stmt->bindParam(':adresse', $adresse);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':full_name', $full_name);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':phone', $phone);
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':ville', $ville);
 
        
 
