@@ -1,6 +1,6 @@
 <?php
 
-   class entreprice{
+   class entreprise{
         private $idEn;
         private $img;
         private $nameEn;

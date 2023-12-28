@@ -1,6 +1,6 @@
 <?php
 
-   class bus{
+   class horaire{
         private $bus_id;
         private $date;
         private $horaire_id;

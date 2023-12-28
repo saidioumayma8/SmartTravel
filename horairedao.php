@@ -1,6 +1,6 @@
 <?php
 include("connection.php");
-include("productpoo.php");
+include("horaireoop.php");
 
 
 class horaireDAO {
@@ -9,36 +9,44 @@ class horaireDAO {
         $this->db = Database::getInstance()->getConnection();
     }
 
-    public function get_hor(){
-        $query = "SELECT * FROM categories";
+    public function get_horaire(){
+        $query = "SELECT * FROM horaire";
         $stmt = $this->db->query($query);
         $stmt -> execute();
-        $categoriesData = $stmt->fetchAll();
-        $categories= array();
-        foreach ($categoriesData as $P) {
-            $categories[] = new categories($P["reference"],$P["etiquette"],$P["descpt"],$P["codeBarres"],$P["img"],  $P["prixAchat"],$P["prixFinal"],$P["prixOffre"],$P["qntMin"],$P["qntStock"],$P["catg"]
+        $horaireData = $stmt->fetchAll();
+        $horaire= array();
+        foreach ($horaireData as $P) {
+            $horaire[] = new horaire($P["bus_id"],$P["date"],$P["horaire_id"],$P["hr_arv"],$P["hr_dep"],  $P["prix"],$P["route_id"],$P["sieges_dispo"]
             );
         }
-        return $categories;
+        return $horaire;
 
     }
-    public function insert_categories($categories)
+    public function insert_categories($horaire)
     {
-        $query = "INSERT INTO categories(name, descr, img, isHide) 
-                  VALUES (:name, :descr, :img, :isHide)";
+        $query = "INSERT INTO horaire(bus_id, date, horaire_id, hr_arv, hr_dep, prix, route_id, susges_dispo) 
+                  VALUES (:bus_id, ;date, :horaire_id, :hr_arv, :hr_dep, :prix, :route_id, :susges_dispoe)";
 
         $stmt = $this->db->prepare($query);
 
-        $name = $categories->getname();
-        $descr = $categories->getdescr();
-        $img = $categories->getimg();
-        $isHide = $categories->getisHide();
+        $name = $horaire->getbus_id();
+        $descr = $horaire->getdate();
+        $img = $horaire->gethoraire_id();
+        $img = $horaire->gethr_arv();
+        $img = $horaire->gethr_dep();
+        $img = $horaire->getprix();
+        $img = $horaire->getroute_id();
+        $img = $horaire->getsusges_dispoe();
         
 
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':descr', $descr);
-        $stmt->bindParam(':img', $img);
-        $stmt->bindParam(':isHide', $isHide);
+        $stmt->bindParam(':bus_id', $bus_id);
+        $stmt->bindParam(':date', $date);
+        $stmt->bindParam(':horaire_id', $horaire_id);
+        $stmt->bindParam(':hr_arv', $hr_arv);
+        $stmt->bindParam(':hr_dep', $hr_dep);
+        $stmt->bindParam(':prix', $prix);
+        $stmt->bindParam(':route_id', $route_id);
+        $stmt->bindParam(':susges_dispoe', $susges_dispoe);
         
 
 
@@ -49,26 +57,39 @@ class horaireDAO {
         }
        
 }
-public function update_categories($categories)
+public function update_horaire($horaire)
     {
-        $query = "UPDATE categories SET 
-                  descr = :descr, 
-                  img = :img,
-                  isHide = :isHide,
-                  WHERE name = :name";
+        $query = "UPDATE horaire SET 
+                  bus_id = :bus_id, 
+                  date = :date,
+                  horaire = :horaire,
+                  hr_arv = :hr_arv,
+                  hr_dep = :hr_dep,
+                  prix = :prix,
+                  route_id = :route_id,
+                  susges_dispoe = :susges_dispoe,
+                  WHERE bus_id = :bus_id";
 
         $stmt = $this->db->prepare($query);
 
-        $name = $categories->getname();
-        $descr = $categories->getdescr();
-        $img = $categories->getimg();
-        $isHide = $categories->getisHide();
+        $name = $horaire->getbus_id();
+        $descr = $horaire->getdate();
+        $img = $horaire->gethoraire_id();
+        $isHide = $horaire->gethr_arv();
+        $isHide = $horaire->gethr_dep();
+        $isHide = $horaire->getprix();
+        $isHide = $horaire->getroute_id();
+        $isHide = $horaire->getsieges_dispo();
        
 
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':descr', $descr);
-        $stmt->bindParam(':img', $img);
-        $stmt->bindParam(':isHide', $isHide);
+        $stmt->bindParam(':bus_id', $bus_id);
+        $stmt->bindParam(':date', $date);
+        $stmt->bindParam(':horaire_id', $horaire_id);
+        $stmt->bindParam(':hr_arv', $hr_arv);
+        $stmt->bindParam(':th_dep', $th_dep);
+        $stmt->bindParam(':prix', $prix);
+        $stmt->bindParam(':route_id', $route_id);
+        $stmt->bindParam(':sieges_dispo', $sieges_dispo);
        
 
         try {
@@ -78,12 +99,12 @@ public function update_categories($categories)
             throw $e;
         }
     }
-    public function delete_categories($id)
+    public function delete_horaire($id)
     {
-        $query = "UPDATE categories WHERE name = :id";
+        $query = "UPDATE horaire WHERE name = :bus_id";
         $stmt = $this->db->prepare($query);
 
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':bus_id', $id);
 
         try {
             $stmt->execute();
