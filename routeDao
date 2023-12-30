@@ -1,0 +1,103 @@
+<?php
+include("connection.php");
+include("routeoop.php");
+
+
+class routeeDAO {
+    private $db;
+    public function __construct(){
+        $this->db = Database::getInstance()->getConnection();
+    }
+
+    public function get_horaire(){
+        $query = "SELECT * FROM route";
+        $stmt = $this->db->query($query);
+        $stmt -> execute();
+        $routeData = $stmt->fetchAll();
+        $route= array();
+        foreach ($routeData as $P) {
+            $route[] = new route($P["departure"],$P["destination"],$P["dist"],$P["duree"],$P["route_id"]
+            );
+        }
+        return $route;
+
+    }
+    public function insert_categories($route)
+    {
+        $query = "INSERT INTO route(departure, destination, dist, duree, route_id) 
+                  VALUES (:departure, ;destination, :dist, :duree, :route_id)";
+
+        $stmt = $this->db->prepare($query);
+
+        $name = $route->getdeparture();
+        $name = $route->getdestination();
+        $name = $route->getdist();
+        $name = $route->getduree();
+        $name = $route->getroute_id();
+        
+
+        $stmt->bindParam(':departure', $departure);
+        $stmt->bindParam(':destination', $destination);
+        $stmt->bindParam(':dist', $dist);
+        $stmt->bindParam(':duree', $duree);
+        $stmt->bindParam(':route_id', $route_id);
+        
+
+
+        try {
+            $stmt->execute();
+        } catch (PDOException $e) {
+            throw $e;
+        }
+       
+}
+public function update_route($route)
+    {
+        $query = "UPDATE route SET 
+                  departure = :departure, 
+                  destination = :destination,
+                  dist = :dist,
+                  duree = :duree,
+                  route_id = :route_id,
+                  WHERE route_id = :route_id";
+
+        $stmt = $this->db->prepare($query);
+
+        $name = $route->getdeparture();
+        $name = $route->getdestination();
+        $name = $route->getdist();
+        $name = $route->getduree();
+        $name = $route->getroute_id();
+       
+
+        $stmt->bindParam(':departure', $departure);
+        $stmt->bindParam(':destination', $destination);
+        $stmt->bindParam(':dist', $dist);
+        $stmt->bindParam(':duree', $duree);
+        $stmt->bindParam(':route_id', $route_id);
+       
+
+        try {
+            $stmt->execute();
+            echo "Record updated successfully.";
+        } catch (PDOException $e) {
+            throw $e;
+        }
+    }
+    public function delete_route($id)
+    {
+        $query = "UPDATE route_id WHERE name = :route_id";
+        $stmt = $this->db->prepare($query);
+
+        $stmt->bindParam(':route_id', $id);
+
+        try {
+            $stmt->execute();
+            echo "Record deleted successfully.";
+        } catch (PDOException $e) {
+            throw $e;
+        }
+    }
+}
+
+?>

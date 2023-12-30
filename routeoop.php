@@ -5,7 +5,7 @@
         private $destination;
         private $dist;
         private $duree;
-        private $route_id
+        private $route_id;
         
 
 
