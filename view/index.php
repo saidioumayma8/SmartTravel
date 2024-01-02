@@ -80,23 +80,25 @@
   </div>
   </div>
  
- 
-      <div class="row" class="welcome">
-  <div class="col-md-4">
-    <img src="../public/image/imgs (1)/imgs/ctm.jpg" alt="">
-    <h3>Ctm</h3>
-  </div>
-  
-  <div class="col-md-4">
-    <img src="../public/image/imgs (1)/imgs/JanaViajes.jpg" alt="">
-    <h3>JanaViajes</h3>
-  </div>
-  
-  <div class="col-md-4">
-    <img src="../public/image/imgs (1)/imgs/BabAllah.jpg" alt="">
-    <h3>BabAllah</h3>
-  </div>
-</div>
+      <h1 class="text-center" class="entreprice">
+        entreprise
+      </h1>
+      <div class="row" >
+           <div class="col-md-4">
+             <img src="../public/image/imgs (1)/imgs/ctm.jpg" alt="">
+             <h3>Ctm</h3>
+           </div>
+           
+           <div class="col-md-4">
+             <img src="../public/image/imgs (1)/imgs/JanaViajes.jpg" alt="">
+             <h3>JanaViajes</h3>
+           </div>
+           
+           <div class="col-md-4">
+             <img src="../public/image/imgs (1)/imgs/BabAllah.jpg" alt="">
+             <h3>BabAllah</h3>
+           </div>
+      </div>
       <!-- <div class="slide-container">
         <span class="slider-span" id="slider-span1"></span>
         <span class="slider-span" id="slider-span2"></span>
